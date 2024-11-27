@@ -99,7 +99,7 @@ ORDER BY region ASC, total_watch_time_minutes DESC;
 ```
 
 ## Full Query
-The full query integrates all the steps outlined above, with the aim to retrieve the top 5 users by total watch time in each region. You can find the full SQL code in the main under `final-query`.
+The full query integrates all the steps outlined above, with the aim to retrieve the top 5 users by total watch time in each region. You can find the full SQL code in the main `final-query`.
 
 The logic involves the following key steps:
 1. **LivestreamWatchTime:** This table captures each user's entry and exit time for livestreams.
@@ -109,13 +109,6 @@ The logic involves the following key steps:
 5. **RankedWatchTime:** Ranks users within each region based on their total watch time in descending order.
 6. **Final Output:** Filters the top 5 ranked users per region and outputs their details.
 
-### How to Use the Query
-To use the full query:
-1. Download or clone the project repository.
-2. Navigate to the `queries/` directory.
-3. Open the query file for review or execution in your SQL environment.
-4. Make sure to replace the placeholder for your company's database (e.g., `xxx` in the query) with the appropriate schema name.
-5. Run the query in your SQL engine to generate the results.
 
 ### Expected Output
 The query produces a table with the following columns:
@@ -130,10 +123,6 @@ This query is designed for analysis in live streaming platforms or applications 
 - Identify the most engaged users in each region.
 - Tailor content, advertisements, or rewards to specific regions with high user engagement.
 - Optimize livestream strategies by focusing on regions or users that contribute the most watch time.
-
-## Additional Notes
-- Ensure that your database tables (`livestream_enter`, `livestream_exit`, `user_entry`) are properly indexed to improve query performance.
-- Depending on your data size, consider optimizing the query using partitioning or caching for faster results.
 
 ## Conclusion
 This project provides valuable insights into user behavior during livestream events, specifically by identifying the top users in each region based on their total watch time. The query can be customized further to meet your specific needs, such as adjusting the number of top users or including additional user metadata.
