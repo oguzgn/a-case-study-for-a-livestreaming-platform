@@ -26,7 +26,7 @@ WITH LivestreamWatchTime AS (
         AND le_exit.event_time >= le.event_time
     GROUP BY le.user_id, le.livestream_id, le.event_time
 )
-
+```
 
 ### 2. Region Mapping
 Here, we map users to their respective regions based on their app entry times.  
@@ -44,7 +44,7 @@ UserRegion AS (
         LEAD(ue.event_time) OVER (PARTITION BY ue.user_id ORDER BY ue.event_time) AS next_entry_time
     FROM xxx.user_entry ue
 )
-
+```
 
 ### 3. Combine Watch Time with Region
 In this step, we combine the watch time data with region information.  
@@ -63,7 +63,7 @@ WatchTimeWithRegion AS (
         AND lwt.enter_time >= ur.entry_time
         AND (lwt.enter_time < ur.next_entry_time OR ur.next_entry_time IS NULL)
 )
-
+```
 
 ### 4. Total Watch Time by Region and User
 Next, we calculate the total watch time for each user in each region.  
@@ -80,7 +80,7 @@ TotalWatchTime AS (
     FROM WatchTimeWithRegion
     GROUP BY region, user_id
 )
-
+```
 
 ### 6. Retrieve Top 5 Users per Region
 Finally, we extract the top 5 users with the highest watch times in each region.  
@@ -96,7 +96,7 @@ SELECT
 FROM RankedWatchTime
 WHERE rank <= 5
 ORDER BY region ASC, total_watch_time_minutes DESC;
-
+```
 
 ## Full Query
 The full query integrates all the steps outlined above, with the aim to retrieve the top 5 users by total watch time in each region. You can find the full SQL code in the main under `final-query`.
